@@ -1,15 +1,15 @@
 import styled from "styled-components";
-import { ITweet } from "./timeline";
+import { ITweet } from "./timeline"
 import { auth, db, storage } from "../firebase";
 import {  deleteDoc, doc, updateDoc } from "firebase/firestore";
 import { deleteObject, ref } from "firebase/storage";
-import { useState } from "react";
+import { useState } from "react";   
 
 const Wrapper=styled.div`
 display: grid;
 grid-template-columns: 3fr 1fr;
 padding:20px;
-border:1px solid rgba(200,200,200,0.5);
+border:1px solid rsgba(200,200,200,0.5);
 border-radius: 15px;
 `;
 

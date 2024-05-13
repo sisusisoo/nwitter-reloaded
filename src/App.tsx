@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import {RouterProvider, createBrowserRouter} from "react-router-dom"
 import styled from 'styled-components'
 import Layout from './component/Layout'
-//import Home from './router/Home'
+import Home from './router/Home'
 import Olympic_tournament from './router/Olympic_tournament'
 import Olympic_main from './router/Olympic-main'
 import Profile from './router/Profile'
@@ -13,6 +13,11 @@ import reset from 'styled-reset'
 import LoadingScreen from './component/loading-screen'
 import { auth } from './firebase'
 import ProtectedRoute from './component/protected-route';
+
+//추가
+import Olympic_soeun from './router/Olympic-soeun'
+import Soeun from './router/Soeun'
+import Soeun_search from './router/Soeun-search'
 
 
 const router =createBrowserRouter([
@@ -25,6 +30,7 @@ const router =createBrowserRouter([
     {
     path:"",
     element:<Olympic_main/>
+    //element:<Home/>
  
     },
     {
@@ -37,6 +43,19 @@ const router =createBrowserRouter([
       element:<Olympic_tournament/>
     
     },
+    {
+      path:"/olympic_soeun",
+      element:<Olympic_soeun/>
+    },
+    {
+      path:"/olympic",
+      element:<Soeun/>
+    }
+    ,
+    {
+      path:"/soeun_search",
+      element:<Soeun_search/>
+    }
   ]
 },
 {

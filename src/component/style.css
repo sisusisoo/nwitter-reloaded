@@ -1,0 +1,73 @@
+
+* {
+    font-family: "Noto Sans KR", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+  }
+
+ul { list-style: none; }
+
+#logo { height: 45px; }
+
+.bg-blue { background-color: #4682A9; }  
+.bg-red { background-color: #ea4336; }
+.bg-yellow { background-color: #fabd05; }
+.bg-green { background-color: #33a853 }
+
+.white { color: #F6F4EB; }
+.black { color: black; }
+.blue { color: #4682A9 }
+
+.grey, .nav-link:hover, .nav-link:focus { color: #f8f8f8; }
+
+.nav-link {
+  font-weight: 500;
+}
+
+.nav-link:hover {
+  opacity:0.9;
+  font-weight: bold;
+}
+
+#card2, #content, #round, .center {
+    display: flex;
+    justify-content: center;
+    justify-items: center;
+}
+
+
+.card, .search-box { margin: 25px; }
+.center { margin-top: 10%; }
+#round, .pic { margin-top: 25px; }
+
+
+#login { width: 300px; }
+
+#start, .search-box { width: 450px; }
+
+#content-start { 
+  margin: auto;
+  margin-top: 25px;
+  margin-bottom: 25px;
+  width: 350px;
+  }
+
+#prof-1, #prof-2 {
+  display: flex;
+  justify-content: center;
+  margin-left: 30px;
+}
+
+#prof-1 img, #prof-2 img{
+  display:block;
+  margin:auto;
+  height: 115px;
+  width: 100px;
+}
+
+#choice {
+  display:block;
+  margin:auto;
+}
+
+

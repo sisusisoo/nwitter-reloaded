@@ -3,6 +3,7 @@ import PostTweetFrom from "../component/post-tweet-from";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import Olympic_tournament from "./Olympic_tournament";
+import Soeun  from "./Soeun"
 //import Timeline from "../component/timeline";
 
 const Wrapper=styled.div`
@@ -35,9 +36,11 @@ export default function Olympic_main(){
     return (
 
         <Wrapper>
+        <Soeun/>
         <ContainerRow>
-        <Button onClick={()=>setOlypicView(true)}> 이상형 올림픽 시작하기</Button>
-        <Button> 교수님 검색</Button>
+            
+        {/* <Button onClick={()=>setOlypicView(true)}> 이상형 올림픽 시작하기</Button>
+        <Button> 교수님 검색</Button>  */}
         </ContainerRow>
 
 
