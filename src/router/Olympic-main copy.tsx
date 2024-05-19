@@ -38,7 +38,8 @@ export default function Olympic_main(){
         <Wrapper>
         <Soeun/>
         <ContainerRow>
-            
+            1
+            121212
         {/* <Button onClick={()=>setOlypicView(true)}> 이상형 올림픽 시작하기</Button>
         <Button> 교수님 검색</Button>  */}
         </ContainerRow>

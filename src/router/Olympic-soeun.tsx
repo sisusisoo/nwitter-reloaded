@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import PostTweetFrom from "../component/post-tweet-from";
 import Timeline from "../component/timeline";
-import { useEffect, useState } from "react";
+import { useEffect, useState,useRef } from "react";
 import { collection, limit, onSnapshot, orderBy, query } from "firebase/firestore";
 import { db } from "../firebase";
 import { Unsubscribe } from "firebase/auth";
@@ -24,7 +24,23 @@ const profDB= jsonData;
 
 export default function Olympic_main(){
     const navigate=useNavigate();
-    const [displayProf,setDisplayProf] =useState([profDB[0],profDB[1]]);
+    const [displayProf,setDisplayProf] =useState([]);
+    //첨에 교수님 순서 랜덤 돌리기 
+    const profArray=useRef([])
+    const [Winners,setWinners]=useState([])
+    const [round,setRound]=useState(1)
+    const [isFinal,setIsFinal]=useState(0)
+    const [finalText,setFinaltext]=useState("")//결승축하
+
+
+    //첨에 시작할때 
+    useEffect(()=>{
+        profDB.sort(()=>Math.random()-0.5);
+        profArray.current=profDB;
+        setDisplayProf([profArray.current[0],profArray.current[1]])
+    },[])
+
+    //선택하면 어떻게 지우지... 배열 항목제거// 배열안에 하나만 남으면 navigate
 
     const toOlympic=()=>{
         navigate("/olympic")//olympilc-soeun
@@ -33,8 +49,27 @@ export default function Olympic_main(){
         navigate("/soeun_search")//olympilc-soeun
     }
 
-    const pick = ()=>{
-        profDB[0]
+    const pick = (picked)=>()=>{
+        if(profArray.current.length <=2){
+            setRound(round+1)
+            if(Winners.length ===0){
+                setIsFinal(1)
+                setFinaltext(picked.name+" 교수님이 우승했어요!!!")
+                setDisplayProf([profArray.current[0]])
+            }
+            else{
+                
+                profArray.current=[...Winners,picked];//승자들끼리 다시 시작 마지막 주자 picked 까지 넣으면서 
+                setDisplayProf([profArray.current[0],profArray.current[1]])
+                setWinners([])
+            }
+        }
+        else if(profArray.current.length > 2){
+            setWinners([...Winners,picked])     
+            profArray.current=profArray.current.slice(2);       //2번째 부터 저장 !!!!!!!!!!!
+            setDisplayProf([profArray.current[0],profArray.current[1]])
+
+        }
     }
 
     return (
@@ -47,18 +82,23 @@ export default function Olympic_main(){
                     <li className="nav-item" id="button-3"><span className="nav-link bg-green white" >etc</span></li>
                 </ul>
             </div>
-            {/*여기서부터 반복*/}
+           
             <div id="content-olympic">
-                <h3 id="round">Round 1</h3>
+                <h3 id="round">Round {round}</h3>
+                <h3 id="finalText"> {finalText}</h3>
                 <div id="content">
+                {/*여기서부터 반복*/}
+                {displayProf.map((prof)=>{
+
+                return(
                 <div id="prof-1" className="card" style={{width: "18rem"}}>
-                    <img src="./img/담곰2.jpg" className="card-img-top" alt="..."></img>
+                    <img src={prof.src} className="card-img-top" alt="..."></img>
 
                     <div className="card-body">
-                    <h5 className="card-title">{profDB[0].name}</h5>
+                    <h5 className="card-title">{prof.name}</h5>
                     <p className="card-text">
                     <i className="bi bi-check2-circle blue">강의st</i><br></br>
-                    {displayProf[0].lectureSt.map((lecture)=>{
+                    {prof.lectureSt.map((lecture)=>{
                         return(
                             <li>{lecture}</li>
                         )
@@ -68,7 +108,7 @@ export default function Olympic_main(){
                     - 시험: 문제 알려줘서 부담이 적음<br></br>
                     - 감점 및 상세점수 공지<br></br> */}
                     <i className="bi bi-check2-circle blue">상담st</i>
-                    {displayProf[0].cosultSt.map((consult)=>{
+                    {prof.cosultSt.map((consult)=>{
                         return(
                             <li>{consult}</li>
                         )
@@ -78,46 +118,34 @@ export default function Olympic_main(){
                 
                     <ul className="list-group list-group-flush">
                     <li className="list-group-item"><span className="badge rounded-pill text-bg-warning">전공</span>&nbsp;
-                    <span>
-
-                    </span>
-
+                    {prof.major}
                     </li>
-                    <li className="list-group-item"><span className="badge rounded-pill text-bg-warning">연구분야</span>&nbsp;컴퓨터비전, 패턴인식</li>
-                    <li className="list-group-item"><span className="badge rounded-pill text-bg-warning">LAB</span>&nbsp; CVPR, 학부연구생 O </li>
+                    <li className="list-group-item"><span className="badge rounded-pill text-bg-warning">연구분야</span>&nbsp;
+                    {prof.researchField.map((field)=>{
+                        return (
+                                <span>{field}</span>
+                        )
+                    })}
+                
+                    </li>
+                    <li className="list-group-item"><span className="badge rounded-pill text-bg-warning">LAB</span>&nbsp; 
+                    {prof.lab.map((lab)=>{
+                        return (
+                                <span>{lab}</span>
+                        )
+                    })}
+                    </li>
                     </ul>
 
                     <div className="card-body">
-                    <button type="button" id="choice" className="btn btn-primary">Choice</button>
-                    </div>
-                </div>
-            
-         
-                <div id="prof-2" className="card" style={{width: "18rem"}}>
-                    <img src="./img/담곰2.jpg" className="card-img-top pic" alt="..."></img>
-
-                    <div className="card-body">
-                    <h5 className="card-title">Prof_남재열</h5>
-                    <p className="card-text">
-                    <i className="bi bi-check2-circle blue">강의st</i><br></br>
-                    - <br></br>
-                    - <br></br>
-                    - <br></br>
-                    - <br></br>
-                    <i className="bi bi-check2-circle blue">상담st</i>...
-                    </p>
-                    </div>
+                    {isFinal !==1 ? <button type="button" onClick={pick(prof)} id="choice" className="btn btn-primary">Choice</button>
+                    :null}
                     
-                    <ul className="list-group list-group-flush">
-                    <li className="list-group-item"><span className="badge rounded-pill text-bg-warning">전공</span>&nbsp; - </li>
-                    <li className="list-group-item"><span className="badge rounded-pill text-bg-warning">연구분야</span>&nbsp;영상압축, 영상인식</li>
-                    <li className="list-group-item"><span className="badge rounded-pill text-bg-warning">LAB</span>&nbsp; - </li>
-                    </ul>
-
-                    <div className="card-body">
-                    <button type="button" id="choice" className="btn btn-primary">Choice</button>
                     </div>
                 </div>
+                )
+            })}
+                  {/*여기까지 반복*/}
             </div>
         </div>
         </div>

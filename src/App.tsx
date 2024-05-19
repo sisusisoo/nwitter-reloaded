@@ -2,9 +2,10 @@ import { useEffect, useState } from 'react'
 import {RouterProvider, createBrowserRouter} from "react-router-dom"
 import styled from 'styled-components'
 import Layout from './component/Layout'
+import LayoutSWE from './component/LayoutSWE'
 import Home from './router/Home'
 import Olympic_tournament from './router/Olympic_tournament'
-import Olympic_main from './router/Olympic-main'
+import Olympic_main from './router/Olympic_main'
 import Profile from './router/Profile'
 import Login from './router/login'
 import CreateAccount from './router/create-account'
@@ -17,14 +18,14 @@ import ProtectedRoute from './component/protected-route';
 //추가
 import Olympic_soeun from './router/Olympic-soeun'
 import Soeun from './router/Soeun'
-import Soeun_search from './router/Soeun-search'
+import Olympic_search from './router/Olympic-Search'
 
 
 const router =createBrowserRouter([
   {
   path:"/",
   element:<ProtectedRoute>
-  < Layout />
+  < LayoutSWE />
   </ProtectedRoute>,
   children:[
     {
@@ -53,8 +54,8 @@ const router =createBrowserRouter([
     }
     ,
     {
-      path:"/soeun_search",
-      element:<Soeun_search/>
+      path:"/olympic_search",
+      element:<Olympic_search/>
     }
   ]
 },
@@ -79,9 +80,9 @@ ${reset};
   box-sizing:border-box;
 }
 body{
-  background-color:black;
+  //background-color:black;
   color:white;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  //font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 
 }
 `;

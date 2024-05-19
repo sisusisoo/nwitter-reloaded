@@ -16,7 +16,7 @@ ul { list-style: none; }
 
 .white { color: #F6F4EB; }
 .black { color: black; }
-.blue { color: #4682A9 }
+.blue, .on:hover { color: #4682A9 } /*.on:hover 추가*/
 
 .grey, .nav-link:hover, .nav-link:focus { color: #f8f8f8; }
 
@@ -29,15 +29,15 @@ ul { list-style: none; }
   font-weight: bold;
 }
 
-#card2, #content, #round, .center {
+#card2, #content, #round, .center, .comment { /* .comment 추가 */
     display: flex;
     justify-content: center;
     justify-items: center;
 }
 
 
-.card, .search-box { margin: 25px; }
-.center { margin-top: 10%; }
+.card, .search-box, .comment { margin: 25px; }
+/* .center { margin-top: 10%; } 식제 */
 #round, .pic { margin-top: 25px; }
 
 
@@ -70,4 +70,52 @@ ul { list-style: none; }
   margin:auto;
 }
 
+#round{
+  font-size: 30px;
+}
+#finalText{
+  display: flex;
+  justify-content: center;
+  justify-items: center;
+  margin-top: 25px;
+  font-size: 40px;
+}
 
+.on-blue:hover, .on-red:hover { color: #0c6efd; }
+th.sorted { background-color: #ccc; }
+
+.page-next { margin-top: 15px; }
+.login { margin: 100px;}
+
+#button { margin-bottom: 15px; }
+
+.col-no{ width: 50px; }
+.col-name{ width: 70px; }
+.col-date{ width: 100px; }
+
+.name {
+  font-size: medium;
+  height: 25px;
+  width: 65px;
+  margin: 0px;
+  padding: 0px;
+}
+
+#prof-title {
+  margin-top: 10px;
+  margin-left: 15px;
+}
+
+#modify {
+  display:block;
+  margin:auto;
+}
+
+.prof-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  padding-bottom: 20px;
+}
