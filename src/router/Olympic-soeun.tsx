@@ -6,7 +6,6 @@ import { collection, limit, onSnapshot, orderBy, query } from "firebase/firestor
 import { db } from "../firebase";
 import { Unsubscribe } from "firebase/auth";
 import Tweet from "../component/tweet";
-import Professor from "../component/ProfessorD";
 
 //------추가 부트 스트랩 
 import 'bootstrap/dist/css/bootstrap.min.css';
