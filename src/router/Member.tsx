@@ -1,6 +1,9 @@
 import { Link, Outlet, useNavigate } from "react-router-dom";
 import styled from "styled-components";
-import { auth } from "../firebase";
+import { auth,db } from "../firebase";
+import {collection,doc, limit, onSnapshot, orderBy, query} from "firebase/firestore";
+import { Unsubscribe } from "firebase/auth";//이거 보류
+import { useEffect, useState } from "react";
 
 
 const Wrapper =styled.div`
@@ -20,6 +23,27 @@ import  "../component/style.css"
 
 export default function LayoutSWE(){
     const navigate=useNavigate();
+
+    useEffect(()=>{ 
+      let unsubscribe : Unsubscribe | null  =  null;
+      const fetchTweet =async()=>{
+      const userProfileQuery=query(
+         collection(db,"userProfile"),
+         //orderBy("createdAt","desc"),
+         orderBy("name","desc"),
+         limit(25)
+      )
+
+      unsubscribe=await onSnapshot(userProfileQuery,(snapshot)=>{
+        const tweets=  snapshot.docs.map((doc)=>{
+            const {name,email,pw,studentid,profandstu,userID,createdAt}=doc.data();
+            return {
+              name,email,pw,studentid,profandstu,userID,createdAt
+            };
+        })})
+
+      }},[])
+
     const onLogOut = async ()=>{
         const ok=confirm("Are you sure? you want to Log Out");
         if(ok){

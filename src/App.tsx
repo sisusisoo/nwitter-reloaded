@@ -93,6 +93,10 @@ const router =createBrowserRouter([
   path:"/create_accountSWE",
   element:<Create_accountSWE/>
 },
+{
+  path:"/create_account",
+  element:<CreateAccount/>
+},
 
 
 

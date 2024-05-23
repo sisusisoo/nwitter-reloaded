@@ -4,6 +4,7 @@ import styled from "styled-components";
 import { db } from "../firebase";
 import Tweet from "./tweet";
 import { Unsubscribe } from "firebase/auth";
+import { equalTo } from "firebase/database";
 
 
 export interface ITweet{//export
